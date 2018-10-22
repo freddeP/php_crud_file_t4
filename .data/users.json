@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1540193045,
+        "email": "sven@stolt.se",
+        "password": "mypswrd"
+    },
+    {
+        "id": 1540196094,
+        "email": "arne@arne.se",
+        "password": "$2y$10$EDBOo3F5MeycqFYE6kZzk.DElGEClUi5pLUbgNNyrFBYXLjjK1Z5S"
+    },
+    {
+        "id": 1540196151,
+        "email": "arne@arne.se",
+        "password": "$2y$10$1OixbtIGCGYoTreJEvF7AeQRXQpXSc2\/eNCP8yX8sZW2VYk56ZFgm"
+    }
+]
