@@ -6,7 +6,7 @@ class File  {
 
     public function __construct($url)
     {
-        echo "Object created";
+
         $this->url = __DIR__."/../.data/".$url;   
     }
 

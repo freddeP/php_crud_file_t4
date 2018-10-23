@@ -1,6 +1,7 @@
 <?php
 include "header.php";
 ?>
+
     <form action="../controllers/user.php" method="post">
 
         <input type="email" name="email" placeholder="email">
