@@ -7,16 +7,18 @@ require_once("../classes/File.php");
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
  
-  $user = new User($_POST['email'], $_POST['password']);
-  $file = new File("users.json");
-  $file->write($user);
-
-
   if( isset($_POST['delId']) )
   {
-    echo json_encode($_POST);
-   // echo '{"mes" : "I will delete you sooon"}';
+    //echo json_encode($_POST);
+    echo '{"mes" : "I will delete you sooon"}';
   
+  }
+  else
+  {
+    $user = new User($_POST['email'], $_POST['password']);
+    $file = new File("users.json");
+    $file->write($user);
+
   }
 
 
