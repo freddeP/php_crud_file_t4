@@ -26,33 +26,61 @@ class File  {
         file_put_contents($this->url, $fileContent);
     }
 
-    public function delete_obj_in_file($id)
+    private function get_key_from_id($id)
     {
-       
         $fileContent = $this->read();
-        $delKey = "";
-       
         foreach($fileContent as $key=>$val)
         {
             if($id == $val->id)
             {
-                $delKey = $key;
-                break;
+                return $key;  
             }
         }
-     
-        if($delKey != "")
+        return false;
+    }
+
+    public function update_obj_in_file($id,$user)
+    {
+        $fileContent = $this->read();
+        $updateKey = $this->get_key_from_id($id);
+
+        if($updateKey !== false)
         {
-            array_splice($fileContent, $delKey, 1);
-            $fileContent = json_encode($fileContent, JSON_PRETTY_PRINT);
-            file_put_contents($this->url, $fileContent);
-            echo "object deleted";
+            $user_info = json_decode($user);
+            // validate email first
+            if(filter_var($user_info -> email,FILTER_VALIDATE_EMAIL))
+            {
+                // updatera objekten i arrayen från filen
+                $fileContent[$updateKey]->email = $user_info -> email;
+                $fileContent[$updateKey]->password = $user_info -> password;
+            
+                $fileContent = json_encode($fileContent, JSON_PRETTY_PRINT);
+                file_put_contents($this->url, $fileContent);
+            }
         }
+
+
+
     }
 
 
+    public function delete_obj_in_file($id)
+    {
+        $fileContent = $this->read();
+        $delKey = $this->get_key_from_id($id);
+       
+        if($delKey !== false)
+        {
+          
+            array_splice($fileContent, $delKey, 1);
 
-
-
+            $fileContent = json_encode($fileContent, JSON_PRETTY_PRINT);
+            file_put_contents($this->url, $fileContent);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 }

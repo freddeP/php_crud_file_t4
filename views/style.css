@@ -1,8 +1,32 @@
-#userInfo{
-
+*{
     box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+#userInfo{
     border:1px solid grey;
     padding:2%;
     margin-bottom:3px;
 
+}
+
+#updateFormDiv{
+
+    position:fixed;
+    width:80%;
+    padding:3%;
+    border:2px solid #404040;
+    background: #eee;
+    top:10vh;
+    left:10%;
+    height:60vh;
+    display:none;
+}
+
+#updateFormDiv span{
+    cursor:pointer;
+    font-size:3em;
+    position:absolute;
+    top: 2px;
+    right:5px;
 }

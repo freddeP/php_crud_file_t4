@@ -9,16 +9,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
  
   if( isset($_POST['delId']) )
   {
-    //echo json_encode($_POST);
-    echo '{"mes" : "I will delete you sooon"}';
-  
+    // Denna kod nås från ajax-request
+    $file = new File("users.json");
+    if( $file->delete_obj_in_file($_POST['delId']))
+    {
+        echo '{"mes" : "deleted"}';
+    } 
+  }
+  else if(isset($_POST['update'])){
+
+    $id = $_POST['id'];  // Skicka med id för sig
+    $user = json_encode($_POST); // skicka med hela posten
+    $file = new File('users.json');
+
+    $file -> update_obj_in_file($id,$user);
+    header("Location: ../views/list_users.php");
   }
   else
   {
+    // Anropas från ett vanligt formulär
     $user = new User($_POST['email'], $_POST['password']);
     $file = new File("users.json");
     $file->write($user);
-
+    header("Location: ../views/list_users.php");
   }
 
 
